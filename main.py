@@ -2,6 +2,9 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+
+
 from webdriver_manager.chrome import ChromeDriverManager
 
 from time import sleep
@@ -13,7 +16,7 @@ service = Service(executable_path="C:\chromedriver.exe")
 options = Options()
 options.add_experimental_option('detach', True)
 # options.add_argument("--incognito")
-options.add_argument("--headless")
+# options.add_argument("--headless")
 
 
 driver = webdriver.Chrome(service=service, options=options)
@@ -91,7 +94,34 @@ driver = webdriver.Chrome(service=service, options=options)
 
 # sleep(2)
 # driver.get("https://yahoo.com")
-driver.get("https://google.com")
+driver.get("https://wikipedia.com")
+
+# el1 = driver.find_element(By.ID, "searchInput")
+el1 = driver.find_element(By.CSS_SELECTOR, "#searchInput")
+el1.send_keys("Hello world")
+
+
+# el2 = driver.find_element(By.XPATH, "//input[@type='search']")
+
+# assert el1 == el2
+
+# el3 = driver.find_element(By.XPATH, "//*[text()='فارسی']")
+# el3.click()
+
+# el4 = driver.find_element(By.TAG_NAME, 'select')
+# el4.click()
+
+# driver.find_element(By.LINK_TEXT, "Download Wikipedia for Android or iOS").click()
+
+# driver.find_element(By.PARTIAL_LINK_TEXT, "Download").click()
+
+# driver.find_element(By.CLASS_NAME, "svg-search-icon").click()
+
+driver.find_element(By.CSS_SELECTOR, ".svg-search-icon").click()
+
+
+
+
 sleep(2)
 # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
