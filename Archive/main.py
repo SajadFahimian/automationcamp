@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-
+from selenium.webdriver.common.action_chains import ActionChains
 
 from webdriver_manager.chrome import ChromeDriverManager
 
@@ -20,6 +20,8 @@ options.add_experimental_option('detach', True)
 
 
 driver = webdriver.Chrome(service=service, options=options)
+
+actions = ActionChains(driver)
 
 
 # driver.get("https://google.com")
@@ -94,11 +96,11 @@ driver = webdriver.Chrome(service=service, options=options)
 
 # sleep(2)
 # driver.get("https://yahoo.com")
-driver.get("https://wikipedia.com")
+# driver.get("https://wikipedia.com")
 
 # el1 = driver.find_element(By.ID, "searchInput")
-el1 = driver.find_element(By.CSS_SELECTOR, "#searchInput")
-el1.send_keys("Hello world")
+# el1 = driver.find_element(By.CSS_SELECTOR, "#searchInput")
+# el1.send_keys("Hello world")
 
 
 # el2 = driver.find_element(By.XPATH, "//input[@type='search']")
@@ -117,10 +119,27 @@ el1.send_keys("Hello world")
 
 # driver.find_element(By.CLASS_NAME, "svg-search-icon").click()
 
-driver.find_element(By.CSS_SELECTOR, ".svg-search-icon").click()
+# driver.find_element(By.CSS_SELECTOR, ".svg-search-icon").click()
 
 
 
+
+driver.get("https://google.com")
+
+search_element = driver.find_element(By.NAME, 'q')
+# search_element.send_keys("selenium" + Keys.ENTER)
+# actions.key_down(Keys.CONTROL).send_keys('a').perform()
+
+
+# actions.key_down(Keys.SHIFT).send_keys_to_element(search_element, 'selenium').perform()
+actions.key_down(Keys.SHIFT).send_keys_to_element(search_element, 'selenium').key_up(Keys.SHIFT).send_keys(" selenium").perform()
+
+sleep(2)
+
+# search_element.clear()
+search_element.click()
+
+actions.key_down(Keys.CONTROL).send_keys('a').send_keys(Keys.DELETE).perform()
 
 sleep(2)
 # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
