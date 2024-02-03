@@ -171,7 +171,6 @@ actions = ActionChains(driver)
 # actions.click_and_hold(element_1).pause(3).release().click_and_hold(element_2).pause(3).release().perform()
 
 
-driver.get("https://play2.automationcamp.ir/")
 
 # element_1 = driver.find_element(By.ID, "drag1")
 # element_2 = driver.find_element(By.ID, "div1")
@@ -183,7 +182,7 @@ driver.get("https://play2.automationcamp.ir/")
 
 # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
 
-driver.execute_script("scroll(0, 500)")
+# driver.execute_script("scroll(0, 500)")
 
 # driver.maximize_window()
 
@@ -196,17 +195,17 @@ driver.execute_script("scroll(0, 500)")
 # actions.move_by_offset(offset['x'], offset['y']).click().perform()
 
 
-element_1 = driver.find_element(By.ID, "drag1")
-element_1_offset = element_1.location
-element_2_offset = driver.find_element(By.ID, "div1").location
-offset = {}
-offset['x'] = element_2_offset['x'] - element_1_offset['x']
-offset['y'] = element_2_offset['y'] - element_1_offset['y']
-actions.drag_and_drop_by_offset(element_1, offset['x'], offset['y']).perform()
+# element_1 = driver.find_element(By.ID, "drag1")
+# element_1_offset = element_1.location
+# element_2_offset = driver.find_element(By.ID, "div1").location
+# offset = {}
+# offset['x'] = element_2_offset['x'] - element_1_offset['x']
+# offset['y'] = element_2_offset['y'] - element_1_offset['y']
+# actions.drag_and_drop_by_offset(element_1, offset['x'], offset['y']).perform()
 
-print(offset)
+# print(offset)
 
-sleep(2)
+# sleep(2)
 
 # sleep(10)
 # current_path = Path(__file__).parent
@@ -214,6 +213,99 @@ sleep(2)
 # driver.save_screenshot(file_name)
 # search_field = driver.find_element("name", "q")
 
-sleep(5)
+
+#==============---- SESSION 10 ----==============
+driver.get("https://play2.automationcamp.ir/")
+# driver.get("https://www.imdb.com/chart/top/")
+driver.implicitly_wait(0.1)
+driver.maximize_window()
+
+# driver.execute_script("window.scrollTo(0, 500);")
+# driver.execute_script("window.scrollTo(0, 500);")
+# driver.execute_script("window.scrollBy(0, 500);")
+
+# document_height = driver.execute_script("return document.body.scrollHeight;")
+# document_width = driver.execute_script("return document.body.scrollWidth;")
+
+# print(document_height)
+# print(document_width)
+
+# element = driver.find_element(By.XPATH, "//h3[text()='235. The Handmaiden']/parent::a")
+# driver.execute_script("arguments[0].scrollIntoView()", element)
+
+
+# def scroll_find_to_element(movie_name, scroll_pixel):
+#     for i in range(10):
+#         try:
+#             driver.find_element(By.XPATH, f"//h3[contains(text(), '{str(movie_name)}')]/parent::*")
+#             print(f"Found the {str(movie_name)}")
+#             return
+#         except:
+#             driver.execute_script(f"window.scrollBy(0, {str(scroll_pixel)});")
+#             sleep(0.5)
+#     raise Exception(f"Not found the {str(movie_name)}")
+
+
+# scroll_find_to_element("235", 3100)
+
+# driver.execute_script("window.scrollBy(0, document.body.scrollHeight);")
+# driver.execute_script("window.scrollBy(0, 0);")
+# driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+# driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+# driver.set_window_size(400, 600)
+
+# element = driver.find_element(By.XPATH, "//td[text()='Personal Shopper']")
+# driver.execute_script("arguments[0].scrollIntoView();", element)
+
+
+# element = driver.find_element(By.XPATH, "//h3[contains(text(), 'The Iron Giant')]/parent::a")
+# print(element)
+# print(element.is_displayed())
+
+
+# el1 = driver.find_element(By.ID, "option")
+# el2 = driver.find_element(By.NAME, "message")
+
+# actions.move_to_element(el1).click_and_hold().move_to_element(el2).release().perform()
+
+# page_element = driver.find_element(By.TAG_NAME, "html")
+
+# page_element.send_keys(Keys.END)
+# sleep(2)
+# page_element.send_keys(Keys.HOME)
+
+# def scroll_find_to_element(movie_name):
+#     page_element = driver.find_element(By.XPATH, "//html[@class=' scriptsOn']")
+
+#     for i in range(10):
+#         try:
+#             driver.find_element(By.XPATH, f"//h3[contains(text(), '{str(movie_name)}')]/parent::*")
+#             print(f"Found the {str(movie_name)}")
+#             return
+#         except:
+#             actions.send_keys_to_element(page_element, Keys.PAGE_DOWN).perform()
+#             # actions.send_keys_to_element(page_element, Keys.DOWN).perform()
+#             # actions.send_keys_to_element(page_element, Keys.DOWN).perform()
+#             sleep(0.5)
+#     raise Exception(f"Not found the {str(movie_name)}")
+
+
+
+# scroll_find_to_element("lkdfjhll")
+
+# element = driver.find_element(By.XPATH, "//h3[contains(text(), 'The Hand')]/parent::a")
+
+# element.location_once_scrolled_into_view
+
+driver.set_window_size(200, 800)
+
+element = driver.find_element(By.XPATH, "//td[text()='Personal Shopper']")
+page_element = driver.find_element(By.TAG_NAME, "html")
+actions.send_keys_to_element(page_element, Keys.END).perform()
+sleep(1)
+element.location_once_scrolled_into_view
+
+sleep(3)
 
 driver.quit()
