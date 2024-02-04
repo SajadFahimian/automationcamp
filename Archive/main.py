@@ -311,10 +311,10 @@ actions = ActionChains(driver)
 # driver.get("https://play2.automationcamp.ir/")
 # driver.get("https://material.angular.io/components/categories")
 # driver.get("https://material.angular.io/components/slide-toggle/examples")
-driver.get("https://material.angular.io/components/input/examples#input-error-state-matcher")
-driver.implicitly_wait(2)
+# driver.get("https://material.angular.io/components/input/examples#input-error-state-matcher")
+# driver.implicitly_wait(2)
 
-driver.find_element(By.XPATH, "//span[contains(text(), 'Got it')]").click()
+# driver.find_element(By.XPATH, "//span[contains(text(), 'Got it')]").click()
 
 # element = driver.find_element(By.TAG_NAME, "h1")
 # text = element.text
@@ -366,14 +366,149 @@ driver.find_element(By.XPATH, "//span[contains(text(), 'Got it')]").click()
 # input_value = input_element.get_attribute("value")
 # assert text == input_value
 
-parent_el = driver.find_element(By.XPATH, "//*[@id='mat-input-1']/ancestor::mat-form-field")
-assert 'dirty' not in parent_el.get_attribute("class")
-input_el = driver.find_element(By.ID, "mat-input-1")
-input_el.send_keys("Hello new world")
-assert 'dirty' in parent_el.get_attribute("class")
+# parent_el = driver.find_element(By.XPATH, "//*[@id='mat-input-1']/ancestor::mat-form-field")
+# assert 'dirty' not in parent_el.get_attribute("class")
+# input_el = driver.find_element(By.ID, "mat-input-1")
+# input_el.send_keys("Hello new world")
+# assert 'dirty' in parent_el.get_attribute("class")
+
+#==============---- SESSION 12 ----==============
+from datetime import datetime
+# driver.get("https://play1.automationcamp.ir/expected_conditions.html")
+driver.implicitly_wait(1)
+
+# print(datetime.now())
+# sleep(3)
+# print(datetime.now())
+
+# driver.implicitly_wait(4)
+# print(datetime.now())
+# try:
+#     driver.find_element(value="kdjf;ljd;j")
+# except:
+#     print(datetime.now())
+
+def wait_until_element_has_an_attribute(element_selector, element_locator, attribute, attribute_value, timeout=5, exact=True):
+    for i in range(timeout * 10):
+        try:
+            element = driver.find_element(element_selector, element_locator)
+            if exact:
+                assert attribute_value == element.get_attribute(attribute)
+            else:
+                assert attribute_value in element.get_attribute(attribute)
+            return
+        except:
+            sleep(0.1)
+    raise Exception(f"Element attribute \"{attribute}\" not in or not equale \"{attribute_value}\"")
+
+def wait_until_element_has_not_an_attribute(element_selector, element_locator, attribute, attribute_value, timeout=5, exact=True):
+    for i in range(timeout * 10):
+        try:
+            element = driver.find_element(element_selector, element_locator)
+            if exact:
+                assert attribute_value != element.get_attribute(attribute)
+            else:
+                assert attribute_value not in element.get_attribute(attribute)
+            return
+        except:
+            sleep(0.1)
+    raise Exception(f"Element attribute \"{attribute}\" in or equale \"{attribute_value}\"")
+
+# trigger = driver.find_element(By.ID, "enabled_trigger")
+# trigger.location_once_scrolled_into_view
+
+# wait_until_element_has_an_attribute(By.ID, "enabled_target", "class", "danger", exact=False)
+# wait_until_element_has_not_an_attribute(By.ID, "enabled_target", "class", "success", exact=False)
+# trigger.click()
+# wait_until_element_has_not_an_attribute(By.ID, "enabled_target", "class", "danger", exact=False)
+# wait_until_element_has_an_attribute(By.ID, "enabled_target", "class", "success", exact=False)
+
+def wait_until_element_is_enabled(selector, locator, timeout=5):
+    for i in range(timeout * 10):
+        try:
+            element = driver.find_element(selector, locator)
+            assert element.is_enabled()
+            
+            return
+        except:
+            sleep(0.1)
+    raise Exception("The element is disabled")
+    
+def wait_until_element_is_not_enabled(selector, locator, timeout=5):
+    for i in range(timeout * 10):
+        try:
+            element = driver.find_element(selector, locator)
+            assert not element.is_enabled()
+            
+            return
+        except:
+            sleep(0.1)
+    raise Exception("The element is ensabled")
+
+# trigger = driver.find_element(By.ID, "enabled_trigger")
+# trigger.location_once_scrolled_into_view
+
+# wait_until_element_is_not_enabled(By.ID, "enabled_target")
+# trigger.click()
+# wait_until_element_is_enabled(By.ID, "enabled_target", 4)
+
+
+def wait_until_element_is_visible(selector, locator, timeout=5):
+    for i in range(timeout * 10):
+        try:
+            element = driver.find_element(selector, locator)
+            assert element.is_displayed()
+            
+            return
+        except:
+            sleep(0.1)
+    raise Exception("The element is not visible")
+    
+def wait_until_element_is_not_visible(selector, locator, timeout=5):
+    for i in range(timeout * 10):
+        try:
+            element = driver.find_element(selector, locator)
+            assert not element.is_displayed()
+            
+            return
+        except:
+            sleep(0.1)
+    raise Exception("The element is visible")
 
 
 
-sleep(1)
+# trigger = driver.find_element(By.ID, "visibility_trigger")
+# trigger.location_once_scrolled_into_view
+# wait_until_element_is_not_visible(By.ID, "visibility_target")
+# trigger.click()
+# wait_until_element_is_visible(By.ID, "visibility_target")
+
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+# trigger = driver.find_element(By.ID, "enabled_trigger")
+# trigger.location_once_scrolled_into_view
+# wait = WebDriverWait(driver, 5)
+# trigger.click()
+# element = wait.until(EC.element_to_be_clickable((By.ID, "enabled_target")))
+# print(element)
+# if element:
+#     element.click()
+
+def wait_until_page_is_loaded(timeout=5):
+    for i in range(timeout * 2):
+        try:
+            state = driver.execute_script("return document.readyState")
+            assert state == "complete"
+            return
+        except:
+            sleep(0.5)
+    raise Exception(f"Page not loaded in {str(timeout)} second")
+
+driver.get("https://archive.org/details/audio_bookspoetry")
+wait_until_page_is_loaded(1)
+
+
+sleep(5)
 
 driver.quit()
