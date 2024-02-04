@@ -215,10 +215,10 @@ actions = ActionChains(driver)
 
 
 #==============---- SESSION 10 ----==============
-driver.get("https://play2.automationcamp.ir/")
+# driver.get("https://play2.automationcamp.ir/")
 # driver.get("https://www.imdb.com/chart/top/")
-driver.implicitly_wait(0.1)
-driver.maximize_window()
+# driver.implicitly_wait(0.1)
+# driver.maximize_window()
 
 # driver.execute_script("window.scrollTo(0, 500);")
 # driver.execute_script("window.scrollTo(0, 500);")
@@ -298,14 +298,82 @@ driver.maximize_window()
 
 # element.location_once_scrolled_into_view
 
-driver.set_window_size(200, 800)
+# driver.set_window_size(200, 800)
 
-element = driver.find_element(By.XPATH, "//td[text()='Personal Shopper']")
-page_element = driver.find_element(By.TAG_NAME, "html")
-actions.send_keys_to_element(page_element, Keys.END).perform()
+# element = driver.find_element(By.XPATH, "//td[text()='Personal Shopper']")
+# page_element = driver.find_element(By.TAG_NAME, "html")
+# actions.send_keys_to_element(page_element, Keys.END).perform()
+# sleep(1)
+# element.location_once_scrolled_into_view
+
+
+#==============---- SESSION 11 ----==============
+# driver.get("https://play2.automationcamp.ir/")
+# driver.get("https://material.angular.io/components/categories")
+# driver.get("https://material.angular.io/components/slide-toggle/examples")
+driver.get("https://material.angular.io/components/input/examples#input-error-state-matcher")
+driver.implicitly_wait(2)
+
+driver.find_element(By.XPATH, "//span[contains(text(), 'Got it')]").click()
+
+# element = driver.find_element(By.TAG_NAME, "h1")
+# text = element.text
+# print(text)
+
+# element = driver.find_element(By.XPATH, "(//span[@class='mdc-button__label' and text()='Components']//..)[1]")
+# element.click()
+# attr_1 = element.get_attribute("class")
+# assert "selected" in attr_1, "Element is not selected"
+# print("attr 1: " + attr_1)
+
+# driver.find_element(By.XPATH, "(//span[@class='mdc-button__label' and text()='CDK']//..)[1]").click()
+# attr_2 = element.get_attribute("class")
+# assert "selected" not in attr_2, "Element is selected"
+# print("attr 2: " + attr_2)
+
+# rbt_accent = driver.find_element(By.ID, "mat-radio-3")
+# assert "checked" in rbt_accent.get_attribute("class")
+
+# element = driver.find_element(By.ID, "mat-radio-2")
+# attr_1 = element.get_attribute("class")
+# assert "checked" not in attr_1
+# print("attr 1: " + attr_1)
+
+# element.click()
+# attr_2 = element.get_attribute("class")
+# assert "checked" in attr_2
+# print("attr 2: " + attr_2)
+
+# assert "checked" not in rbt_accent.get_attribute("class")
+
+# toggle = driver.find_element(By.ID, "mat-mdc-slide-toggle-1-button")
+# assert "checked" not in toggle.get_attribute("class")
+# toggle.click()
+# assert "checked" in toggle.get_attribute("class")
+
+# assert "disabled" not in toggle.get_attribute("class")
+
+# checkbox = driver.find_element(By.ID, "mat-mdc-checkbox-2")
+# assert "checked" not in checkbox.get_attribute("class")
+# checkbox.click()
+# assert "checked" in checkbox.get_attribute("class")
+
+# assert "disabled" in toggle.get_attribute("class")
+
+# input_element = driver.find_element(By.ID, "mat-input-1")
+# text = "This is session 11"
+# input_element.send_keys(text)
+# input_value = input_element.get_attribute("value")
+# assert text == input_value
+
+parent_el = driver.find_element(By.XPATH, "//*[@id='mat-input-1']/ancestor::mat-form-field")
+assert 'dirty' not in parent_el.get_attribute("class")
+input_el = driver.find_element(By.ID, "mat-input-1")
+input_el.send_keys("Hello new world")
+assert 'dirty' in parent_el.get_attribute("class")
+
+
+
 sleep(1)
-element.location_once_scrolled_into_view
-
-sleep(3)
 
 driver.quit()
