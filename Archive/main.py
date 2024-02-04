@@ -375,7 +375,7 @@ actions = ActionChains(driver)
 #==============---- SESSION 12 ----==============
 from datetime import datetime
 # driver.get("https://play1.automationcamp.ir/expected_conditions.html")
-driver.implicitly_wait(1)
+# driver.implicitly_wait(1)
 
 # print(datetime.now())
 # sleep(3)
@@ -505,10 +505,122 @@ def wait_until_page_is_loaded(timeout=5):
             sleep(0.5)
     raise Exception(f"Page not loaded in {str(timeout)} second")
 
-driver.get("https://archive.org/details/audio_bookspoetry")
-wait_until_page_is_loaded(1)
+# driver.get("https://archive.org/details/audio_bookspoetry")
+# wait_until_page_is_loaded(1)
 
 
-sleep(5)
+#==============---- SESSION 13 ----==============
+# driver.get("https://the-internet.herokuapp.com/javascript_alerts")
+# driver.get("https://material.angular.io/components/dialog/examples")
+# driver.get("https://material.angular.io/components/snack-bar/examples")
+# driver.get("https://material.angular.io/components/tooltip/examples#tooltip-message")
+
+driver.implicitly_wait(1)
+
+# driver.find_element(By.XPATH, "//span[contains(text(), 'Got it')]").click()
+
+from selenium.webdriver.common.alert import Alert
+alert = Alert(driver)
+
+# result = driver.find_element(By.ID, "result")
+
+# driver.find_element(By.XPATH, "//button[text()='Click for JS Alert']").click()
+# assert alert.text == "I am a JS Alert"
+# alert.accept()
+# assert result.text == "You successfully clicked an alert"
+
+# driver.find_element(By.XPATH, "//button[text()='Click for JS Confirm']").click()
+# assert alert.text == "I am a JS Confirm"
+# sleep(1)
+# alert.accept()
+# assert result.text == "You clicked: Ok"
+
+# driver.find_element(By.XPATH, "//button[text()='Click for JS Confirm']").click()
+# assert alert.text == "I am a JS Confirm"
+# sleep(1)
+# alert.dismiss()
+# assert result.text == "You clicked: Cancel"
+
+# text = "Sajad try to programer"
+# driver.find_element(By.XPATH, "//button[text()='Click for JS Prompt']").click()
+# assert alert.text == "I am a JS prompt"
+# sleep(1)
+# alert.send_keys(text)
+# sleep(1)
+# alert.accept()
+# assert text in result.text
+# assert text in driver.page_source
+
+# driver.find_element(By.XPATH, "//button[text()='Click for JS Prompt']").click()
+# assert alert.text == "I am a JS prompt"
+# sleep(1)
+# alert.dismiss()
+# assert 'null' in result.text
+# assert 'null' in driver.page_source
+
+# offset = driver.find_element(By.XPATH, "(//*[@class='mdc-button__label' and text()='CDK'])[1]").location
+
+# driver.find_element(By.XPATH, "(//span[text()='Open dialog']/..)[1]").click()
+# driver.find_element(By.XPATH, "//h3[text()='Develop across all platforms']")
+# driver.find_element(By.XPATH, "//button//span[text()='Cancel']")
+# driver.find_element(By.XPATH, "//button//span[text()='Install']")
+
+# actions.move_by_offset(offset['x'], offset['y']).pause(0.5).click().perform()
+
+# driver.find_element(By.XPATH, "(//span[text()='Open dialog']/..)[1]").click()
+
+# timeout_input = driver.find_element(By.ID, "mat-input-1")
+# timeout_input.clear()
+# timeout_input.send_keys(1)
+# driver.find_element(By.XPATH, "(//span[@class='mdc-button__label' and normalize-space(text())='Pizza party']/ancestor::button)[2]").click()
+
+
+
+# driver.find_element(By.XPATH, "//*[@class='cdk-overlay-container']//*[contains(text(), 'Pizza party!!!')]")
+
+
+# driver.find_element(By.XPATH, "//*[@class='cdk-overlay-container']//*[contains(text(), 'Pizza party!!!')]")
+
+
+# driver.find_element(By.TAG_NAME, "snack-bar-component-example-snack")
+# driver.find_element(By.XPATH, "//snack-bar-component-example-snack")
+# driver.find_element(By.XPATH, "//snack-bar-component-example-snack//*[contains(text(), 'Pizza party!!!')]")
+
+def check_tooltip_is_visible(elements: list, text: str, exact=True) -> None:
+    for el in elements:
+        try:
+            if exact:
+                assert el.text == text
+            else:
+                assert text in el.text
+            return
+        except:
+            pass
+    raise Exception("Can not find any tooltip with message: " + text)
+    
+
+
+# input_element = driver.find_element(By.ID, "mat-input-2")
+# text = "Automation Camp"
+# input_element.clear()
+# input_element.send_keys(text)
+# action_button = driver.find_element(By.XPATH, "(//span[@class='mdc-button__label' and contains(text(), 'Action')]/parent::button)[6]")
+# actions.move_to_element(action_button).perform()
+# elements = driver.find_elements(By.XPATH, "//*[@class='cdk-overlay-container']/descendant::*")
+# assert len(elements) > 0
+# check_tooltip_is_visible(elements, text)
+# actions.move_to_element(input_element).perform()
+# elements = driver.find_elements(By.XPATH, "//*[@class='cdk-overlay-container']/descendant::*")
+# assert len(elements) == 0
+
+
+
+
+
+
+
+
+
+sleep(2)
 
 driver.quit()
