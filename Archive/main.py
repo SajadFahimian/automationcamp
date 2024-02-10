@@ -13,15 +13,15 @@ from pathlib import Path
 
 # service = Service(ChromeDriverManager().install())
 service = Service(executable_path="C:\chromedriver.exe")
-options = Options()
-options.add_experimental_option('detach', True)
+# options = Options()
+# options.add_experimental_option('detach', True)
 # options.add_argument("--incognito")
 # options.add_argument("--headless")
 
 
-driver = webdriver.Chrome(service=service, options=options)
+# driver = webdriver.Chrome(service=service, options=options)
 
-actions = ActionChains(driver)
+# actions = ActionChains(driver)
 
 
 # driver.get("https://google.com")
@@ -515,12 +515,12 @@ def wait_until_page_is_loaded(timeout=5):
 # driver.get("https://material.angular.io/components/snack-bar/examples")
 # driver.get("https://material.angular.io/components/tooltip/examples#tooltip-message")
 
-driver.implicitly_wait(1)
+# driver.implicitly_wait(1)
 
 # driver.find_element(By.XPATH, "//span[contains(text(), 'Got it')]").click()
 
 from selenium.webdriver.common.alert import Alert
-alert = Alert(driver)
+# alert = Alert(driver)
 
 # result = driver.find_element(By.ID, "result")
 
@@ -615,12 +615,77 @@ def check_tooltip_is_visible(elements: list, text: str, exact=True) -> None:
 
 
 
+#==============---- SESSION 14 ----==============
+
+current_path = Path(__file__).parent.parent
+user_dir = os.path.join(current_path, 'user_dir')
+
+# path = "C:/Users/Home/Desktop/Project/automationcamp/user_data"
+options = webdriver.ChromeOptions()
+options.add_argument("user-data-dir=" + str(user_dir))
+options.add_experimental_option("detach", True)
+
+driver = webdriver.Chrome(service=service, options=options)
+wait = WebDriverWait(driver, 10)
+actions = ActionChains(driver)
+
+# driver.get("https://quera.org/accounts/signup")
+# driver.get("https://quera.org")
+driver.get("https://web.bale.ai/chat")
+driver.maximize_window()
+driver.implicitly_wait(3)
+
+windows = driver.window_handles
+driver.switch_to.window(windows[0])
+
+# input_email = driver.find_element(By.XPATH, "//input[@type='email']")
+# input_password = driver.find_element(By.XPATH, "//input[@type='password']")
+# submit_button = driver.find_element(By.ID, "signup-button")
+
+# email = "automationcamp@info.com"
+# password = "0915automationir"
+
+# recaptcha = wati.until(EC.presence_of_element_located((By.XPATH, "//*[@class='recaptcha-checkbox-border']")))
+# recaptcha = driver.find_element(By.XPATH, "//*[@class='recaptcha-checkbox-border']")
+
+
+# input_email.send_keys(email)
+# input_password.send_keys(password)
+# actions.move_to_element(recaptcha).click().perform()
+
+# driver.get("https://patrickhlauke.github.io/recaptcha/")
+
+# driver.switch_to.frame(wait.until(EC.presence_of_element_located((By.XPATH, "//iframe[@role='presentation']"))))
+# driver.find_element(By.XPATH, "//div[@class='recaptcha-checkbox-border']").click()
+
+# driver.switch_to.window(windows[0])
+# submit_button = wait.until(EC.element_to_be_clickable((By.ID, "signup-button")))
+# submit_button.click()
+
+# driver.find_element(By.XPATH, "//button[text()='متوجه شدم']").click()
+# mobile_number = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='شماره همراه']")))
+# mobile_number.send_keys("09306813527")
+
+# submit_button = wait.until(EC.element_to_be_clickable((By.XPATH, "//button[@data-testid='submit-button']")))
+# submit_button.click()
+
+# input_number = wait.until(EC.presence_of_element_located((By.XPATH, "//input[@id='کد ورود']")))
+# number = input("please enter your number: ")
+# input_number.send_keys(number)
+
+# submit_button_1 = wait.until(EC.element_to_be_clickable(()))
 
 
 
 
 
 
-sleep(2)
+
+
+
+
+
+
+sleep(10)
 
 driver.quit()
