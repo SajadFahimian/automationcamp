@@ -631,12 +631,12 @@ actions = ActionChains(driver)
 
 # driver.get("https://quera.org/accounts/signup")
 # driver.get("https://quera.org")
-driver.get("https://web.bale.ai/chat")
-driver.maximize_window()
-driver.implicitly_wait(3)
+# driver.get("https://web.bale.ai/chat")
+# driver.maximize_window()
+# driver.implicitly_wait(3)
 
-windows = driver.window_handles
-driver.switch_to.window(windows[0])
+# windows = driver.window_handles
+# driver.switch_to.window(windows[0])
 
 # input_email = driver.find_element(By.XPATH, "//input[@type='email']")
 # input_password = driver.find_element(By.XPATH, "//input[@type='password']")
@@ -676,6 +676,50 @@ driver.switch_to.window(windows[0])
 # submit_button_1 = wait.until(EC.element_to_be_clickable(()))
 
 
+#==============---- SESSION 15 ----==============
+
+# driver.get("https://csreis.github.io/tests/cross-site-iframe.html")
+driver.get("https://play1.automationcamp.ir/frames.html")
+
+# condition = wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, "frame1")))
+# condition = wait.until(EC.frame_to_be_available_and_switch_to_it("frame1"))
+
+# if condition:
+
+#     text = driver.find_element(By.TAG_NAME, "body").text
+
+#     assert text == "Initial page"
+
+# driver.switch_to.default_content()
+# driver.find_element(By.XPATH, "//h1")
+
+# driver.switch_to.frame("frame1")
+# driver.find_element(By.ID, "click_me_1").click()
+# sleep(1)
+
+# driver.switch_to.frame("frame2")
+# driver.find_element(By.ID, "click_me_2").click()
+# sleep(1)
+
+# driver.switch_to.parent_frame()
+# driver.switch_to.frame("frame3")
+# driver.switch_to.frame("frame4")
+# driver.find_element(By.ID, "click_me_4").click()
+# sleep(1)
+
+def get_frame_of_element(selector, locator, _driver):
+    all_frames = _driver.find_elements(By.TAG_NAME, "iframe")
+
+    for fra in all_frames:
+        _driver.switch_to.frame(fra)
+        try:
+            el = _driver.find_element(selector, locator)
+            driver.switch_to.default_content()
+            return fra
+        except:
+            pass
+    
+    raise Exception("Could not find the element in all frames")
 
 
 
@@ -686,6 +730,8 @@ driver.switch_to.window(windows[0])
 
 
 
-sleep(10)
+
+
+sleep(5)
 
 driver.quit()
