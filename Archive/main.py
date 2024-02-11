@@ -12,7 +12,7 @@ import os
 from pathlib import Path
 
 # service = Service(ChromeDriverManager().install())
-service = Service(executable_path="C:\chromedriver.exe")
+# service = Service(executable_path="C:\chromedriver.exe")
 # options = Options()
 # options.add_experimental_option('detach', True)
 # options.add_argument("--incognito")
@@ -730,7 +730,7 @@ def get_frame_of_element(selector, locator, _driver):
 
 
 #==============---- SESSION 17 ----==============
-options = webdriver.ChromeOptions()
+# options = webdriver.ChromeOptions()
 
 prefs = {
     # "profile.default_content_setting_values.geolocation": 2,
@@ -740,14 +740,49 @@ prefs = {
 }
 
 # 0 > ask, 1 > allow, 2 > deny
-options.add_experimental_option("prefs", prefs)
-options.add_argument("start-maximized")
+# options.add_experimental_option("prefs", prefs)
+# options.add_argument("start-maximized")
 
-driver = webdriver.Chrome(service=service, options=options)
+# driver = webdriver.Chrome(service=service, options=options)
 # driver.get("https://whatmylocation.com/")
-driver.get("https://play2.automationcamp.ir/")
-driver.execute_script("Notification.requestPermission()")
-sleep(10)
+# driver.get("https://play2.automationcamp.ir/")
+# driver.execute_script("Notification.requestPermission()")
+# sleep(10)
+
+#==============---- SESSION 18 ----==============
+# options.add_experimental_option("debuggerAddress", "localhost:8383")
+# driver = webdriver.Chrome(service=service, options=options)
+# driver.find_element(By.ID, "lname").send_keys("Fahimian")
+
+def open_session():
+    service = Service(executable_path="C:\chromedriver.exe")
+
+    options = webdriver.ChromeOptions()
+    user_dir = "C:/Users/Home/Desktop/Project/automation/user_dir"
+    options.add_argument("--remote-debugger-port=8484")
+    options.add_argument("--user-data-dir=" + user_dir)
+    options.add_experimental_option('detach', True)
+    driver = webdriver.Chrome(service=service, options=options)
+    return driver
+
+def continue_session():
+    service = Service(executable_path="C:\chromedriver.exe")
+
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("debuggerAddress", "localhost:8484")
+    driver = webdriver.Chrome(service=service, options=options)
+    return driver
+
+# driver = open_session()
+# driver.get("https://play2.automationcamp.ir/")
+# driver.find_element(By.ID, "fname").send_keys("Sajad")
+# driver.find_element(By.XPATH, "//input[@id='male']")
+# driver.find_element(By.ID, "LastName").send_keys("Fahimian")
+
+driver = continue_session()
+driver.find_element(By.XPATH, "//input[@id='male']").click()
+driver.find_element(By.ID, "lname").send_keys("Fahimian")
+
 
 
 
@@ -760,4 +795,4 @@ sleep(10)
 
 sleep(5)
 
-driver.quit()
+# driver.quit()
