@@ -617,17 +617,17 @@ def check_tooltip_is_visible(elements: list, text: str, exact=True) -> None:
 
 #==============---- SESSION 14 ----==============
 
-current_path = Path(__file__).parent.parent
-user_dir = os.path.join(current_path, 'user_dir')
+# current_path = Path(__file__).parent.parent
+# user_dir = os.path.join(current_path, 'user_dir')
 
 # path = "C:/Users/Home/Desktop/Project/automationcamp/user_data"
-options = webdriver.ChromeOptions()
-options.add_argument("user-data-dir=" + str(user_dir))
-options.add_experimental_option("detach", True)
+# options = webdriver.ChromeOptions()
+# options.add_argument("user-data-dir=" + str(user_dir))
+# options.add_experimental_option("detach", True)
 
-driver = webdriver.Chrome(service=service, options=options)
-wait = WebDriverWait(driver, 10)
-actions = ActionChains(driver)
+# driver = webdriver.Chrome(service=service, options=options)
+# wait = WebDriverWait(driver, 10)
+# actions = ActionChains(driver)
 
 # driver.get("https://quera.org/accounts/signup")
 # driver.get("https://quera.org")
@@ -723,11 +723,31 @@ def get_frame_of_element(selector, locator, _driver):
 
 
 #==============---- SESSION 16 ----==============
-driver.get("https://play2.automationcamp.ir/")
+# driver.get("https://play2.automationcamp.ir/")
 
 # driver.find_element(By.CSS_SELECTOR, "input[id='fname']").send_keys('outomationcamp')
-driver.find_element(By.CSS_SELECTOR, "input#fname").send_keys('outomationcamp')
+# driver.find_element(By.CSS_SELECTOR, "input#fname").send_keys('outomationcamp')
 
+
+#==============---- SESSION 17 ----==============
+options = webdriver.ChromeOptions()
+
+prefs = {
+    # "profile.default_content_setting_values.geolocation": 2,
+    # "profile.default_content_setting_values.media_stream_camera": 1,
+    # "profile.default_content_setting_values.media_stream_mic": 1,
+    "profile.default_content_setting_values.notifications": 2,
+}
+
+# 0 > ask, 1 > allow, 2 > deny
+options.add_experimental_option("prefs", prefs)
+options.add_argument("start-maximized")
+
+driver = webdriver.Chrome(service=service, options=options)
+# driver.get("https://whatmylocation.com/")
+driver.get("https://play2.automationcamp.ir/")
+driver.execute_script("Notification.requestPermission()")
+sleep(10)
 
 
 
