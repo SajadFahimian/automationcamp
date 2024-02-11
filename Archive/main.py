@@ -679,7 +679,7 @@ actions = ActionChains(driver)
 #==============---- SESSION 15 ----==============
 
 # driver.get("https://csreis.github.io/tests/cross-site-iframe.html")
-driver.get("https://play1.automationcamp.ir/frames.html")
+# driver.get("https://play1.automationcamp.ir/frames.html")
 
 # condition = wait.until(EC.frame_to_be_available_and_switch_to_it((By.ID, "frame1")))
 # condition = wait.until(EC.frame_to_be_available_and_switch_to_it("frame1"))
@@ -721,6 +721,12 @@ def get_frame_of_element(selector, locator, _driver):
     
     raise Exception("Could not find the element in all frames")
 
+
+#==============---- SESSION 16 ----==============
+driver.get("https://play2.automationcamp.ir/")
+
+# driver.find_element(By.CSS_SELECTOR, "input[id='fname']").send_keys('outomationcamp')
+driver.find_element(By.CSS_SELECTOR, "input#fname").send_keys('outomationcamp')
 
 
 
